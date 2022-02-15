@@ -8,9 +8,12 @@ function showTable($data)
     foreach ($data as $key => $value) {
         echo "<td>{$key}</td>";
     };
+
     echo "</tr>";
+
     $temp = 0;
-    for ($i = 0; $i < 4; $i++){
+
+    for ($i = 0; $i < 4; $i++) {
         echo "<tr>";
         $temp +=25;
         echo "<td>{$temp}</td>";
@@ -25,7 +28,9 @@ function showTable($data)
     }
 };
 
-function showPrice($prices){
+function showPrice($prices) {
         $price = $prices[$_POST['month']][$_POST['weight']] * $_POST['weight'];
+        echo "<span class=\"border p-3 border-primary border-5 rounded-pill\">";
         echo "Цена составит {$price}";
+        echo "</span>";
 }

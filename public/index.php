@@ -81,12 +81,10 @@ require __DIR__.'/../app/functions/helpers.php';
         </div>
         <div class="row mt-3">
             <div class="col-md-4 offset-md-4">
-            <span class="border p-3 border-primary border-5 rounded-pill">
                 <?php
                 if ($_POST)
                     showPrice($prices[$_POST['type']]);
                 ?>
-                </span>
             </div>
         </div>
     </div>
