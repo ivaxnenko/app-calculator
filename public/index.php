@@ -20,7 +20,7 @@ require __DIR__.'/../app/functions/helpers.php';
     <div class="container">
         <div class="row mb-3 mt-3">
             <div class="col-md-4 offset-md-3 h2">
-                Калькулятор стоимости грузопервозок
+                Freight Cost Calculator
             </div>
         </div>
         <div class="row">
@@ -29,7 +29,7 @@ require __DIR__.'/../app/functions/helpers.php';
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="type">Сырье</label>
+                                <label for="type">Feedstock</label>
                                 <select class="form-control" id="type" name="type">
                                     <?php
                                     foreach ($prices as $key => $value)
@@ -40,7 +40,7 @@ require __DIR__.'/../app/functions/helpers.php';
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="weight">Месяц</label>
+                                <label for="weight">Month</label>
                                 <select class="form-control" id="month" name="month">
                                 <?php
                                     foreach ($prices["Meal"] as $key => $value)
@@ -51,7 +51,7 @@ require __DIR__.'/../app/functions/helpers.php';
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="month">Тоннаж</label>
+                                <label for="month">Weight</label>
                                 <select class="form-control" id="weight" name="weight">
                                 <?php
                                     foreach ($prices["Meal"]["September"] as $key => $value)
@@ -63,7 +63,7 @@ require __DIR__.'/../app/functions/helpers.php';
                     </div>
                     <div class="row mb-3 mt-3">
                         <div class="col-md-4 offset-md-4">
-                            <button type="submit" class="btn btn-primary" name="button">Рассчитать</button>
+                            <button type="submit" class="btn btn-primary" name="button">Calculate</button>
                         </div>
                     </div>
                 </form>
@@ -74,7 +74,7 @@ require __DIR__.'/../app/functions/helpers.php';
                 <table class="table">
                     <?php
                     if ($_POST)
-                        showTable($prices[$_POST['type']]);
+                        echo showTable($prices[$_POST['type']]);
                     ?>
                 </table>
             </div>
@@ -83,7 +83,7 @@ require __DIR__.'/../app/functions/helpers.php';
             <div class="col-md-4 offset-md-4">
                 <?php
                 if ($_POST)
-                    showPrice($prices[$_POST['type']]);
+                    echo showPrice($prices[$_POST['type']]);
                 ?>
             </div>
         </div>
