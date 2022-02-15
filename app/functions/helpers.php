@@ -2,35 +2,39 @@
 
 function showTable($data)
 {   
-    echo "<tr>";
-    echo "<td>{$_POST['type']}</td>";
+    $content = "<tr>";
+    $content.= "<td>{$_POST['type']}</td>";
     
     foreach ($data as $key => $value) {
-        echo "<td>{$key}</td>";
+        $content.= "<td>{$key}</td>";
     };
 
-    echo "</tr>";
+    $content.= "</tr>";
 
     $temp = 0;
 
     for ($i = 0; $i < 4; $i++) {
-        echo "<tr>";
+        $content.= "<tr>";
         $temp +=25;
-        echo "<td>{$temp}</td>";
+        $content.= "<td>{$temp}</td>";
         foreach ($data as $key => $value) {
-            if ($temp == $_POST['weight'] && $key == $_POST['month']){
-                echo "<td class=\"table-info\" >{$value[$temp]}</td>";
+            if ($temp == $_POST['weight'] && $key == $_POST['month']) {
+                $content.= "<td class=\"table-info\" >{$value[$temp]}</td>";
             } else {
-                echo "<td>{$value[$temp]}</td>";
+                $content.= "<td>{$value[$temp]}</td>";
             }
         }
-        echo "</tr>";
+        $content.= "</tr>";
     }
+    return $content;
 };
 
 function showPrice($prices) {
         $price = $prices[$_POST['month']][$_POST['weight']] * $_POST['weight'];
-        echo "<span class=\"border p-3 border-primary border-5 rounded-pill\">";
-        echo "Цена составит {$price}";
-        echo "</span>";
+
+        $content = "<span class=\"border p-3 border-primary border-5 rounded-pill\">";
+        $content.= "Total price: {$price}";
+        $content.= "</span>";
+
+        return $content;
 }
