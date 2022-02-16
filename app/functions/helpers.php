@@ -33,7 +33,7 @@ function showPrice($prices) {
         $price = $prices[$_POST['month']][$_POST['weight']] * $_POST['weight'];
 
         $content = "<span class=\"border p-3 border-primary border-5 rounded-pill\">";
-        $content.= "Total price: {$price}";
+        $content.= "Цена составит: {$price}";
         $content.= "</span>";
 
         return $content;

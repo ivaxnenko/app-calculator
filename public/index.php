@@ -20,7 +20,7 @@ require __DIR__.'/../app/functions/helpers.php';
     <div class="container">
         <div class="row mb-3 mt-3">
             <div class="col-md-4 offset-md-3 h2">
-                Freight Cost Calculator
+                Калькулятор стоимости грузоперевозки
             </div>
         </div>
         <div class="row">
@@ -29,7 +29,7 @@ require __DIR__.'/../app/functions/helpers.php';
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="type">Feedstock</label>
+                                <label for="type">Сырье</label>
                                 <select class="form-control" id="type" name="type">
                                     <?php
                                     foreach ($prices as $key => $value)
@@ -40,10 +40,10 @@ require __DIR__.'/../app/functions/helpers.php';
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="weight">Month</label>
+                                <label for="weight">Месяц</label>
                                 <select class="form-control" id="month" name="month">
                                 <?php
-                                    foreach ($prices["Meal"] as $key => $value)
+                                    foreach ($prices["Соя"] as $key => $value)
                                         echo "<option>{$key}</option>";
                                     ?>
                                 </select>
@@ -51,10 +51,10 @@ require __DIR__.'/../app/functions/helpers.php';
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="month">Weight</label>
+                                <label for="month">Тоннаж</label>
                                 <select class="form-control" id="weight" name="weight">
                                 <?php
-                                    foreach ($prices["Meal"]["September"] as $key => $value)
+                                    foreach ($prices["Соя"]["Сентябрь"] as $key => $value)
                                         echo "<option>{$key}</option>";
                                     ?>
                                 </select>
