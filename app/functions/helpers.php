@@ -10,9 +10,15 @@ function showTable($link)
 
     $content = "<tr>";
     $content.= "<td>{$_POST['type']}</td>";
+
+    $monthHelper = "";
+
     
     foreach ($categories as $key => $value) {
         $content.= "<td>{$value[1]}</td>";
+        if ($value[1]==$_POST['month']) {
+            $monthHelper = $value[0];
+        };
     };
 
     $content.= "</tr>";
@@ -24,7 +30,7 @@ function showTable($link)
     $result = mysqli_query($link,$sql);
 
     $categories = mysqli_fetch_all($result);
-
+    
     $temp = 0;
 
     for ($i = 0; $i<4; $i++) {
@@ -33,7 +39,11 @@ function showTable($link)
         $weight = 25 * ($i+1);
         $content.= "<td>{$weight}</td>";
         for ($j = 0; $j<6;$j++) {
-            $content.= "<td>{$categories[$helpTemp][2]}</td>";
+            if ($weight == $_POST['weight'] && $monthHelper == $categories[$helpTemp][0]) {
+                $content.= "<td class=\"table-info\">{$categories[$helpTemp][2]}</td>";
+            } else {
+                $content.= "<td>{$categories[$helpTemp][2]}</td>";
+            }
             $helpTemp+=4;
         };
         $content.= "</tr>";
