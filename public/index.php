@@ -1,12 +1,12 @@
 <?php
 
-require __DIR__.'/../app/config/config.php';
 require __DIR__.'/../app/functions/helpers.php';
+require __DIR__.'/../app/include/database.php';
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -32,8 +32,7 @@ require __DIR__.'/../app/functions/helpers.php';
                                 <label for="type">Сырье</label>
                                 <select class="form-control" id="type" name="type">
                                     <?php
-                                    foreach ($prices as $key => $value)
-                                        echo "<option>{$key}</option>";
+                                        echo showAnyType($link, 'material');
                                     ?>
                                 </select>
                             </div>
@@ -42,9 +41,8 @@ require __DIR__.'/../app/functions/helpers.php';
                             <div class="form-group">
                                 <label for="weight">Месяц</label>
                                 <select class="form-control" id="month" name="month">
-                                <?php
-                                    foreach ($prices["Соя"] as $key => $value)
-                                        echo "<option>{$key}</option>";
+                                    <?php
+                                        echo showAnyType($link, 'month');
                                     ?>
                                 </select>
                             </div>
@@ -54,9 +52,8 @@ require __DIR__.'/../app/functions/helpers.php';
                                 <label for="month">Тоннаж</label>
                                 <select class="form-control" id="weight" name="weight">
                                 <?php
-                                    foreach ($prices["Соя"]["Сентябрь"] as $key => $value)
-                                        echo "<option>{$key}</option>";
-                                    ?>
+                                    echo showAnyType($link, 'weight');
+                                ?>
                                 </select>
                             </div>
                         </div>
@@ -74,7 +71,7 @@ require __DIR__.'/../app/functions/helpers.php';
                 <table class="table">
                     <?php
                     if ($_POST)
-                        echo showTable($prices[$_POST['type']]);
+                        echo showTable($link);
                     ?>
                 </table>
             </div>
@@ -83,7 +80,7 @@ require __DIR__.'/../app/functions/helpers.php';
             <div class="col-md-4 offset-md-4">
                 <?php
                 if ($_POST)
-                    echo showPrice($prices[$_POST['type']]);
+                    echo showPrice($link);
                 ?>
             </div>
         </div>
