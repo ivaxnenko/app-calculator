@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `month` (
 INSERT INTO `month` (`id`, `name`) VALUES
 	(1, 'Январь'),
 	(2, 'Февраль'),
-	(3, 'Авуст'),
+	(3, 'Август'),
 	(4, 'Сентябрь'),
 	(5, 'Октябрь'),
 	(6, 'Ноябрь');
