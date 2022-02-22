@@ -2,7 +2,13 @@
 
 require __DIR__.'/../app/functions/helpers.php';
 require __DIR__.'/../app/include/database.php';
+require __DIR__.'/../vendor/autoload.php';
 
+use Laminas\Diactoros\ServerRequestFactory;
+
+$request = ServerRequestFactory::fromGlobals();
+$request = $request->getParsedBody();
+var_dump($request);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +38,7 @@ require __DIR__.'/../app/include/database.php';
                                 <label for="type">Сырье</label>
                                 <select class="form-control" id="type" name="type">
                                     <?php
-                                        echo showAnyType($link, 'material');
+                                        echo showAnyType($link, 'material', $request);
                                     ?>
                                 </select>
                             </div>
@@ -42,7 +48,7 @@ require __DIR__.'/../app/include/database.php';
                                 <label for="weight">Месяц</label>
                                 <select class="form-control" id="month" name="month">
                                     <?php
-                                        echo showAnyType($link, 'month');
+                                        echo showAnyType($link, 'month', $request);
                                     ?>
                                 </select>
                             </div>
@@ -52,7 +58,7 @@ require __DIR__.'/../app/include/database.php';
                                 <label for="month">Тоннаж</label>
                                 <select class="form-control" id="weight" name="weight">
                                 <?php
-                                    echo showAnyType($link, 'weight');
+                                    echo showAnyType($link, 'weight', $request);
                                 ?>
                                 </select>
                             </div>
@@ -70,8 +76,8 @@ require __DIR__.'/../app/include/database.php';
             <div class="col-md-4 offset-md-3">
                 <table class="table">
                     <?php
-                    if ($_POST)
-                        echo showTable($link);
+                    if ($request)
+                        echo showTable($link, $request);
                     ?>
                 </table>
             </div>
@@ -79,8 +85,8 @@ require __DIR__.'/../app/include/database.php';
         <div class="row mt-3">
             <div class="col-md-4 offset-md-4">
                 <?php
-                if ($_POST)
-                    echo showPrice($link);
+                if ($request)
+                    echo showPrice($link, $request);
                 ?>
             </div>
         </div>

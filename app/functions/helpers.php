@@ -1,6 +1,6 @@
 <?php
 
-function showTable($link)
+function showTable($link, $request)
 {   
     $sql = "SELECT * FROM month;";
 
@@ -9,14 +9,14 @@ function showTable($link)
     $categories = mysqli_fetch_all($result);
 
     $content = "<tr>";
-    $content.= "<td>{$_POST['type']}</td>";
+    $content.= "<td>{$request['type']}</td>";
 
     $monthHelper = "";
 
     
     foreach ($categories as $key => $value) {
         $content.= "<td>{$value[1]}</td>";
-        if ($value[1]==$_POST['month']) {
+        if ($value[1]==$request['month']) {
             $monthHelper = $value[0];
         };
     };
@@ -25,7 +25,7 @@ function showTable($link)
 
     $sql = "SELECT month_id, weight_id, price FROM price 
     JOIN material ON material_id = material.id 
-    WHERE material.name = \"{$_POST['type']}\";";
+    WHERE material.name = \"{$request['type']}\";";
 
     $result = mysqli_query($link,$sql);
 
@@ -39,7 +39,7 @@ function showTable($link)
         $weight = 25 * ($i+1);
         $content.= "<td>{$weight}</td>";
         for ($j = 0; $j<6;$j++) {
-            if ($weight == $_POST['weight'] && $monthHelper == $categories[$helpTemp][0]) {
+            if ($weight == $request['weight'] && $monthHelper == $categories[$helpTemp][0]) {
                 $content.= "<td class=\"table-info\">{$categories[$helpTemp][2]}</td>";
             } else {
                 $content.= "<td>{$categories[$helpTemp][2]}</td>";
@@ -53,16 +53,16 @@ function showTable($link)
     return $content;
 };
 
-function showPrice($link) {
+function showPrice($link, $request) {
     $sql = 
         "SELECT price FROM price
         JOIN month ON month.id = month_id 
         JOIN weight ON weight.id = weight_id 
         JOIN material ON material.id = material_id 
         WHERE 
-        weight.count = {$_POST['weight']} AND 
-        month.name=\"{$_POST['month']}\" AND 
-        material.name = \"{$_POST['type']}\";";
+        weight.count = {$request['weight']} AND 
+        month.name=\"{$request['month']}\" AND 
+        material.name = \"{$request['type']}\";";
 
 
     $result = mysqli_query($link,$sql);
@@ -71,7 +71,7 @@ function showPrice($link) {
 
     $price = $categories[0][0];
 
-    $price *= $_POST['weight'];
+    $price *= $request['weight'];
 
     $content = "<span class=\"border p-3 border-primary border-5 rounded-pill\">";
     $content.= "Цена составит: {$price}";
